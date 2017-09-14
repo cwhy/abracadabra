@@ -1,4 +1,4 @@
-module Main exposing (..)
+module Dice exposing (..)
 
 import Html exposing (Html, body, button, div, text)
 import Html.Attributes exposing (style, class)
@@ -228,7 +228,7 @@ rewardColor visualReward =
             "#B20000"
 
         Neutral ->
-            "#EEEEFF"
+            "#DEDEDE"
 
 
 view : Model -> Html Msg
@@ -245,7 +245,9 @@ view model =
         [ viewDices model.diceFaces <| rewardColor model.visualReward
         , case model.visualReward of
             Positive ->
-                div [] []
+                div []
+                    [-- Maybe.map (toString >> text) resultOf model
+                    ]
 
             Negative ->
                 div [] []
@@ -279,7 +281,9 @@ viewScore model =
         , onMouseLeave (UpdateRequestScoreStatus False)
         , style
             [ ( "font-size", "5vh" )
-            , ( "color", "gold" )
+            , ( "background-color", "gold" )
+            , ( "color", "white" )
+            , ( "border-radius", "4vh" )
             , ( "width", "5em" )
             , ( "font-weight", "bold" )
             , ( "padding", "0.5em" )
@@ -327,7 +331,6 @@ viewDices faces bgcolor =
         [ style
             [ ( "display", "flex" )
             , ( "justify-content", "space-around" )
-            , ( "width", "100%" )
             , ( "height", "30vh" )
             , ( "margin-top", "10vh" )
             , ( "margin-bottom", "10vh" )
@@ -350,6 +353,8 @@ viewDice face bgcolor =
             , ( "text-align", "center" )
             , ( "border-radius", "4vh" )
             , ( "background-color", bgcolor )
+            , ( "margin-left", "4vh" )
+            , ( "margin-right", "4vh" )
             ]
         , class "dice"
         ]

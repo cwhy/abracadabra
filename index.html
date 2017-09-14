@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html><head><meta charset="UTF-8"><title>Main</title><style>html,head,body { padding:0; margin:0; }
+<html><head><meta charset="UTF-8"><title>Dice</title><style>html,head,body { padding:0; margin:0; }
 body { font-family: calibri, helvetica, arial, sans-serif; }</style><script type="text/javascript">
 (function() {
 'use strict';
@@ -9555,7 +9555,7 @@ var _elm_lang$mouse$Mouse$subMap = F2(
 			});
 	});
 _elm_lang$core$Native_Platform.effectManagers['Mouse'] = {pkg: 'elm-lang/mouse', init: _elm_lang$mouse$Mouse$init, onEffects: _elm_lang$mouse$Mouse$onEffects, onSelfMsg: _elm_lang$mouse$Mouse$onSelfMsg, tag: 'sub', subMap: _elm_lang$mouse$Mouse$subMap};
-var _user$project$Main$viewDice = F2(
+var _user$project$Dice$viewDice = F2(
 	function (face, bgcolor) {
 		return A2(
 			_elm_lang$html$Html$div,
@@ -9586,7 +9586,15 @@ var _user$project$Main$viewDice = F2(
 												_1: {
 													ctor: '::',
 													_0: {ctor: '_Tuple2', _0: 'background-color', _1: bgcolor},
-													_1: {ctor: '[]'}
+													_1: {
+														ctor: '::',
+														_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '4vh'},
+														_1: {
+															ctor: '::',
+															_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '4vh'},
+															_1: {ctor: '[]'}
+														}
+													}
 												}
 											}
 										}
@@ -9615,7 +9623,7 @@ var _user$project$Main$viewDice = F2(
 				_1: {ctor: '[]'}
 			});
 	});
-var _user$project$Main$viewDices = F2(
+var _user$project$Dice$viewDices = F2(
 	function (faces, bgcolor) {
 		return A2(
 			_elm_lang$html$Html$div,
@@ -9630,18 +9638,14 @@ var _user$project$Main$viewDices = F2(
 							_0: {ctor: '_Tuple2', _0: 'justify-content', _1: 'space-around'},
 							_1: {
 								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'width', _1: '100%'},
+								_0: {ctor: '_Tuple2', _0: 'height', _1: '30vh'},
 								_1: {
 									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'height', _1: '30vh'},
+									_0: {ctor: '_Tuple2', _0: 'margin-top', _1: '10vh'},
 									_1: {
 										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'margin-top', _1: '10vh'},
-										_1: {
-											ctor: '::',
-											_0: {ctor: '_Tuple2', _0: 'margin-bottom', _1: '10vh'},
-											_1: {ctor: '[]'}
-										}
+										_0: {ctor: '_Tuple2', _0: 'margin-bottom', _1: '10vh'},
+										_1: {ctor: '[]'}
 									}
 								}
 							}
@@ -9651,15 +9655,15 @@ var _user$project$Main$viewDices = F2(
 			},
 			{
 				ctor: '::',
-				_0: A2(_user$project$Main$viewDice, faces.left, bgcolor),
+				_0: A2(_user$project$Dice$viewDice, faces.left, bgcolor),
 				_1: {
 					ctor: '::',
-					_0: A2(_user$project$Main$viewDice, faces.right, bgcolor),
+					_0: A2(_user$project$Dice$viewDice, faces.right, bgcolor),
 					_1: {ctor: '[]'}
 				}
 			});
 	});
-var _user$project$Main$viewControlGroups = function (buttons) {
+var _user$project$Dice$viewControlGroups = function (buttons) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{
@@ -9686,7 +9690,7 @@ var _user$project$Main$viewControlGroups = function (buttons) {
 		},
 		buttons);
 };
-var _user$project$Main$rewardColor = function (visualReward) {
+var _user$project$Dice$rewardColor = function (visualReward) {
 	var _p1 = visualReward;
 	switch (_p1.ctor) {
 		case 'Positive':
@@ -9694,10 +9698,10 @@ var _user$project$Main$rewardColor = function (visualReward) {
 		case 'Negative':
 			return '#B20000';
 		default:
-			return '#EEEEFF';
+			return '#DEDEDE';
 	}
 };
-var _user$project$Main$delay = F2(
+var _user$project$Dice$delay = F2(
 	function (time, msg) {
 		return A2(
 			_elm_lang$core$Task$perform,
@@ -9708,9 +9712,9 @@ var _user$project$Main$delay = F2(
 					_elm_lang$core$Task$succeed(msg)),
 				_elm_lang$core$Process$sleep(time)));
 	});
-var _user$project$Main$randFaceIntGen = A2(_elm_lang$core$Random$int, 1, 6);
-var _user$project$Main$randFacesIntGen = A2(_elm_lang$core$Random$pair, _user$project$Main$randFaceIntGen, _user$project$Main$randFaceIntGen);
-var _user$project$Main$getDiceFaceVal = function (face) {
+var _user$project$Dice$randFaceIntGen = A2(_elm_lang$core$Random$int, 1, 6);
+var _user$project$Dice$randFacesIntGen = A2(_elm_lang$core$Random$pair, _user$project$Dice$randFaceIntGen, _user$project$Dice$randFaceIntGen);
+var _user$project$Dice$getDiceFaceVal = function (face) {
 	var _p2 = face;
 	if (_p2.ctor === 'NoFace') {
 		return _elm_lang$core$Maybe$Nothing;
@@ -9718,23 +9722,23 @@ var _user$project$Main$getDiceFaceVal = function (face) {
 		return _elm_lang$core$Maybe$Just(_p2._0);
 	}
 };
-var _user$project$Main$DiceFaces = F2(
+var _user$project$Dice$DiceFaces = F2(
 	function (a, b) {
 		return {left: a, right: b};
 	});
-var _user$project$Main$Model = F8(
+var _user$project$Dice$Model = F8(
 	function (a, b, c, d, e, f, g, h) {
 		return {count: a, color: b, defaultColor: c, diceFaces: d, score: e, visualReward: f, resultGuess: g, ifRequestScore: h};
 	});
-var _user$project$Main$SetDiceFace = function (a) {
+var _user$project$Dice$SetDiceFace = function (a) {
 	return {ctor: 'SetDiceFace', _0: a};
 };
-var _user$project$Main$NoFace = {ctor: 'NoFace'};
-var _user$project$Main$Small = {ctor: 'Small'};
-var _user$project$Main$Big = {ctor: 'Big'};
-var _user$project$Main$resultOf = function (model) {
-	var valR = _user$project$Main$getDiceFaceVal(model.diceFaces.right);
-	var valL = _user$project$Main$getDiceFaceVal(model.diceFaces.left);
+var _user$project$Dice$NoFace = {ctor: 'NoFace'};
+var _user$project$Dice$Small = {ctor: 'Small'};
+var _user$project$Dice$Big = {ctor: 'Big'};
+var _user$project$Dice$resultOf = function (model) {
+	var valR = _user$project$Dice$getDiceFaceVal(model.diceFaces.right);
+	var valL = _user$project$Dice$getDiceFaceVal(model.diceFaces.left);
 	var sum = A3(
 		_elm_lang$core$Maybe$map2,
 		F2(
@@ -9751,42 +9755,42 @@ var _user$project$Main$resultOf = function (model) {
 		sum);
 	if (_p3.ctor === 'Just') {
 		if (_p3._0 === true) {
-			return _elm_lang$core$Maybe$Just(_user$project$Main$Big);
+			return _elm_lang$core$Maybe$Just(_user$project$Dice$Big);
 		} else {
-			return _elm_lang$core$Maybe$Just(_user$project$Main$Small);
+			return _elm_lang$core$Maybe$Just(_user$project$Dice$Small);
 		}
 	} else {
 		return _elm_lang$core$Maybe$Nothing;
 	}
 };
-var _user$project$Main$Neutral = {ctor: 'Neutral'};
-var _user$project$Main$model = {
+var _user$project$Dice$Neutral = {ctor: 'Neutral'};
+var _user$project$Dice$model = {
 	count: 0,
 	color: 'black',
 	defaultColor: 'black',
-	diceFaces: {left: _user$project$Main$NoFace, right: _user$project$Main$NoFace},
+	diceFaces: {left: _user$project$Dice$NoFace, right: _user$project$Dice$NoFace},
 	score: 0,
-	visualReward: _user$project$Main$Neutral,
+	visualReward: _user$project$Dice$Neutral,
 	resultGuess: _elm_lang$core$Maybe$Nothing,
 	ifRequestScore: false
 };
-var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Main$model, _1: _elm_lang$core$Platform_Cmd$none};
-var _user$project$Main$Negative = {ctor: 'Negative'};
-var _user$project$Main$Positive = {ctor: 'Positive'};
-var _user$project$Main$UpdateRequestScoreStatus = function (a) {
+var _user$project$Dice$init = {ctor: '_Tuple2', _0: _user$project$Dice$model, _1: _elm_lang$core$Platform_Cmd$none};
+var _user$project$Dice$Negative = {ctor: 'Negative'};
+var _user$project$Dice$Positive = {ctor: 'Positive'};
+var _user$project$Dice$UpdateRequestScoreStatus = function (a) {
 	return {ctor: 'UpdateRequestScoreStatus', _0: a};
 };
-var _user$project$Main$viewScore = function (model) {
+var _user$project$Dice$viewScore = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{
 			ctor: '::',
 			_0: _elm_lang$html$Html_Events$onMouseEnter(
-				_user$project$Main$UpdateRequestScoreStatus(true)),
+				_user$project$Dice$UpdateRequestScoreStatus(true)),
 			_1: {
 				ctor: '::',
 				_0: _elm_lang$html$Html_Events$onMouseLeave(
-					_user$project$Main$UpdateRequestScoreStatus(false)),
+					_user$project$Dice$UpdateRequestScoreStatus(false)),
 				_1: {
 					ctor: '::',
 					_0: _elm_lang$html$Html_Attributes$style(
@@ -9795,20 +9799,28 @@ var _user$project$Main$viewScore = function (model) {
 							_0: {ctor: '_Tuple2', _0: 'font-size', _1: '5vh'},
 							_1: {
 								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'color', _1: 'gold'},
+								_0: {ctor: '_Tuple2', _0: 'background-color', _1: 'gold'},
 								_1: {
 									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'width', _1: '5em'},
+									_0: {ctor: '_Tuple2', _0: 'color', _1: 'white'},
 									_1: {
 										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'font-weight', _1: 'bold'},
+										_0: {ctor: '_Tuple2', _0: 'border-radius', _1: '4vh'},
 										_1: {
 											ctor: '::',
-											_0: {ctor: '_Tuple2', _0: 'padding', _1: '0.5em'},
+											_0: {ctor: '_Tuple2', _0: 'width', _1: '5em'},
 											_1: {
 												ctor: '::',
-												_0: {ctor: '_Tuple2', _0: 'user-select', _1: 'none'},
-												_1: {ctor: '[]'}
+												_0: {ctor: '_Tuple2', _0: 'font-weight', _1: 'bold'},
+												_1: {
+													ctor: '::',
+													_0: {ctor: '_Tuple2', _0: 'padding', _1: '0.5em'},
+													_1: {
+														ctor: '::',
+														_0: {ctor: '_Tuple2', _0: 'user-select', _1: 'none'},
+														_1: {ctor: '[]'}
+													}
+												}
 											}
 										}
 									}
@@ -9833,37 +9845,37 @@ var _user$project$Main$viewScore = function (model) {
 			_1: {ctor: '[]'}
 		});
 };
-var _user$project$Main$KeyMsg = function (a) {
+var _user$project$Dice$KeyMsg = function (a) {
 	return {ctor: 'KeyMsg', _0: a};
 };
-var _user$project$Main$MouseMsg = function (a) {
+var _user$project$Dice$MouseMsg = function (a) {
 	return {ctor: 'MouseMsg', _0: a};
 };
-var _user$project$Main$subscriptions = function (model) {
+var _user$project$Dice$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$batch(
 		{
 			ctor: '::',
-			_0: _elm_lang$mouse$Mouse$clicks(_user$project$Main$MouseMsg),
+			_0: _elm_lang$mouse$Mouse$clicks(_user$project$Dice$MouseMsg),
 			_1: {
 				ctor: '::',
-				_0: _elm_lang$keyboard$Keyboard$downs(_user$project$Main$KeyMsg),
+				_0: _elm_lang$keyboard$Keyboard$downs(_user$project$Dice$KeyMsg),
 				_1: {ctor: '[]'}
 			}
 		});
 };
-var _user$project$Main$EvaluateResult = function (a) {
+var _user$project$Dice$EvaluateResult = function (a) {
 	return {ctor: 'EvaluateResult', _0: a};
 };
-var _user$project$Main$Guess = function (a) {
+var _user$project$Dice$Guess = function (a) {
 	return {ctor: 'Guess', _0: a};
 };
-var _user$project$Main$viewGuessButton = function (resultGuess) {
+var _user$project$Dice$viewGuessButton = function (resultGuess) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{
 			ctor: '::',
 			_0: _elm_lang$html$Html_Events$onClick(
-				_user$project$Main$Guess(resultGuess)),
+				_user$project$Dice$Guess(resultGuess)),
 			_1: {
 				ctor: '::',
 				_0: _elm_lang$html$Html_Attributes$style(
@@ -9913,7 +9925,7 @@ var _user$project$Main$viewGuessButton = function (resultGuess) {
 			_1: {ctor: '[]'}
 		});
 };
-var _user$project$Main$view = function (model) {
+var _user$project$Dice$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$body,
 		{
@@ -9936,7 +9948,7 @@ var _user$project$Main$view = function (model) {
 									_0: {
 										ctor: '_Tuple2',
 										_0: 'background-color',
-										_1: _user$project$Main$rewardColor(model.visualReward)
+										_1: _user$project$Dice$rewardColor(model.visualReward)
 									},
 									_1: {ctor: '[]'}
 								}
@@ -9949,9 +9961,9 @@ var _user$project$Main$view = function (model) {
 		{
 			ctor: '::',
 			_0: A2(
-				_user$project$Main$viewDices,
+				_user$project$Dice$viewDices,
 				model.diceFaces,
-				_user$project$Main$rewardColor(model.visualReward)),
+				_user$project$Dice$rewardColor(model.visualReward)),
 			_1: {
 				ctor: '::',
 				_0: function () {
@@ -9968,16 +9980,16 @@ var _user$project$Main$view = function (model) {
 								{ctor: '[]'},
 								{ctor: '[]'});
 						default:
-							return _user$project$Main$viewControlGroups(
+							return _user$project$Dice$viewControlGroups(
 								{
 									ctor: '::',
-									_0: _user$project$Main$viewGuessButton(_user$project$Main$Big),
+									_0: _user$project$Dice$viewGuessButton(_user$project$Dice$Big),
 									_1: {
 										ctor: '::',
-										_0: _user$project$Main$viewGuessButton(_user$project$Main$Small),
+										_0: _user$project$Dice$viewGuessButton(_user$project$Dice$Small),
 										_1: {
 											ctor: '::',
-											_0: _user$project$Main$viewScore(model),
+											_0: _user$project$Dice$viewScore(model),
 											_1: {ctor: '[]'}
 										}
 									}
@@ -9988,21 +10000,21 @@ var _user$project$Main$view = function (model) {
 			}
 		});
 };
-var _user$project$Main$ResetFaces = {ctor: 'ResetFaces'};
-var _user$project$Main$UpdateFaces = function (a) {
+var _user$project$Dice$ResetFaces = {ctor: 'ResetFaces'};
+var _user$project$Dice$UpdateFaces = function (a) {
 	return {ctor: 'UpdateFaces', _0: a};
 };
-var _user$project$Main$update = F2(
+var _user$project$Dice$update = F2(
 	function (msg, model) {
 		var command = function () {
 			var _p7 = msg;
 			switch (_p7.ctor) {
 				case 'RollDices':
-					return A2(_elm_lang$core$Random$generate, _user$project$Main$UpdateFaces, _user$project$Main$randFacesIntGen);
+					return A2(_elm_lang$core$Random$generate, _user$project$Dice$UpdateFaces, _user$project$Dice$randFacesIntGen);
 				case 'EvaluateResult':
-					return A2(_user$project$Main$delay, _elm_lang$core$Time$millisecond * 600, _user$project$Main$ResetFaces);
+					return A2(_user$project$Dice$delay, _elm_lang$core$Time$millisecond * 600, _user$project$Dice$ResetFaces);
 				case 'Guess':
-					return A2(_elm_lang$core$Random$generate, _user$project$Main$EvaluateResult, _user$project$Main$randFacesIntGen);
+					return A2(_elm_lang$core$Random$generate, _user$project$Dice$EvaluateResult, _user$project$Dice$randFacesIntGen);
 				default:
 					return _elm_lang$core$Platform_Cmd$none;
 			}
@@ -10021,41 +10033,41 @@ var _user$project$Main$update = F2(
 						model,
 						{
 							diceFaces: {
-								left: _user$project$Main$SetDiceFace(_p8._0._0),
-								right: _user$project$Main$SetDiceFace(_p8._0._1)
+								left: _user$project$Dice$SetDiceFace(_p8._0._0),
+								right: _user$project$Dice$SetDiceFace(_p8._0._1)
 							}
 						});
 				case 'ResetFaces':
 					return _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							diceFaces: {left: _user$project$Main$NoFace, right: _user$project$Main$NoFace},
-							visualReward: _user$project$Main$Neutral
+							diceFaces: {left: _user$project$Dice$NoFace, right: _user$project$Dice$NoFace},
+							visualReward: _user$project$Dice$Neutral
 						});
 				case 'Guess':
 					return _elm_lang$core$Native_Utils.update(
 						model,
 						{
 							resultGuess: _elm_lang$core$Maybe$Just(_p8._0),
-							visualReward: _user$project$Main$Neutral
+							visualReward: _user$project$Dice$Neutral
 						});
 				case 'EvaluateResult':
 					var newModel = _elm_lang$core$Native_Utils.update(
 						model,
 						{
 							diceFaces: {
-								left: _user$project$Main$SetDiceFace(_p8._0._0),
-								right: _user$project$Main$SetDiceFace(_p8._0._1)
+								left: _user$project$Dice$SetDiceFace(_p8._0._0),
+								right: _user$project$Dice$SetDiceFace(_p8._0._1)
 							}
 						});
 					var _p9 = function () {
 						var _p10 = _elm_lang$core$Native_Utils.eq(
 							model.resultGuess,
-							_user$project$Main$resultOf(newModel));
+							_user$project$Dice$resultOf(newModel));
 						if (_p10 === true) {
-							return {ctor: '_Tuple2', _0: model.score + 1, _1: _user$project$Main$Positive};
+							return {ctor: '_Tuple2', _0: model.score + 1, _1: _user$project$Dice$Positive};
 						} else {
-							return {ctor: '_Tuple2', _0: model.score - 1, _1: _user$project$Main$Negative};
+							return {ctor: '_Tuple2', _0: model.score - 1, _1: _user$project$Dice$Negative};
 						}
 					}();
 					var newScore = _p9._0;
@@ -10071,13 +10083,13 @@ var _user$project$Main$update = F2(
 		}();
 		return {ctor: '_Tuple2', _0: newModel, _1: command};
 	});
-var _user$project$Main$main = _elm_lang$html$Html$program(
-	{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})();
-var _user$project$Main$RollDices = {ctor: 'RollDices'};
+var _user$project$Dice$main = _elm_lang$html$Html$program(
+	{init: _user$project$Dice$init, view: _user$project$Dice$view, update: _user$project$Dice$update, subscriptions: _user$project$Dice$subscriptions})();
+var _user$project$Dice$RollDices = {ctor: 'RollDices'};
 var Elm = {};
-Elm['Main'] = Elm['Main'] || {};
-if (typeof _user$project$Main$main !== 'undefined') {
-    _user$project$Main$main(Elm['Main'], 'Main', undefined);
+Elm['Dice'] = Elm['Dice'] || {};
+if (typeof _user$project$Dice$main !== 'undefined') {
+    _user$project$Dice$main(Elm['Dice'], 'Dice', undefined);
 }
 
 if (typeof define === "function" && define['amd'])
@@ -10109,4 +10121,4 @@ for (var publicModule in Elm)
 }
 
 }).call(this);
-</script></head><body><script type="text/javascript">Elm.Main.fullscreen()</script></body></html>
+</script></head><body><script type="text/javascript">Elm.Dice.fullscreen()</script></body></html>
